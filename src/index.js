@@ -1,17 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDom from 'react-dom'
+import './index.css'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const books = [{
+  id: 1,
+  title: 'My First Book',
+  author: 'My First Author'
+},
+{
+  id: 2,
+  title: 'My Second Book',
+  author: 'My Second Author'
+}]
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const names = ['john', 'peter', 'susan']
+const newName = names.map((name) => {
+  return <h1>{name}</h1>
+})
+
+function Booklist() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        return (
+          <Book key={book.id} {...book}></Book>
+        );
+      })}
+    </section>
+  );
+}
+
+// const Greeting = () => {
+//   return React.createElement('h1',{},'hello world')
+// }
+
+const Book = (props) => {
+  const {title,author} = props;
+  const clickHandler = () =>{
+    alert('hello')
+  }
+  return (
+    <article className='book'>
+      <img src="https://cdn.pixabay.com/photo/2015/07/27/20/16/book-863418_1280.jpg" alt="" width='100' height='100' />
+      <h1>{title}</h1>
+      <h3>{author}</h3>
+      <button type="button" onClick={clickHandler}>Example</button>
+    </article>
+  );
+}
+
+ReactDom.render(<Booklist />, document.getElementById('root'))
