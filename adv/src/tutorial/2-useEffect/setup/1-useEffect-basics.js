@@ -7,11 +7,19 @@ import React, { useState, useEffect } from 'react';
 const UseEffectBasics = () => {
   const [value, setValue] = useState(0)
 
-  useEffect(() => { // CANNOT PUT CALL HOOKS IN A CONDITIONALLY
+  // useEffect(() => { // CANNOT PUT CALL HOOKS IN A CONDITIONALLY
+  //   if (value > 1) {
+  //     document.title = `New Messages(${value})`
+  //   }
+  // },[]) // only run on initial RENDER IF U ADD A []
+
+  useEffect(() => { // can put as many useEffect as u want
+    console.log("Use Effect CCalled")
     if (value > 1) {
       document.title = `New Messages(${value})`
     }
-  })
+  },[value]);
+
   return <React.Fragment>
     <h2>Effect</h2>
     <h1>{value}</h1>
